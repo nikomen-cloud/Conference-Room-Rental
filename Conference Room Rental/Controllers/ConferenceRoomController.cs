@@ -25,7 +25,6 @@ namespace Conference_Room_Rental.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var room = await _conferenceRoomService.GetRoomByIdAsync(id);
-            // 4. Pattern matching "is null"
             if (room is null) return NotFound();
 
             return View(room);

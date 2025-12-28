@@ -19,6 +19,7 @@ namespace Conference_Room_Rental.Models.ViewModels
         public string? SelectedRoomName { get; set; }
         public string? SelectedRoomDescription { get; set; }
         public string? SelectedRoomImageUrl { get; set; }
+        [Display(Name = "Cena za godzinę")]
         public decimal? SelectedRoomPrice { get; set; }
     }
 }

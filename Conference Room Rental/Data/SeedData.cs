@@ -33,7 +33,7 @@ namespace Conference_Room_Rental.Data
                     {
                         UserName = adminEmail,
                         Email = adminEmail,
-                        FirstName = "Główny",
+                        FirstName = "Admin",
                         LastName = "Administrator",
                         EmailConfirmed = true
                     };
@@ -42,7 +42,6 @@ namespace Conference_Room_Rental.Data
 
                     if (result.Succeeded)
                     {
-                        // Przypisanie roli Admin
                         await userManager.AddToRoleAsync(adminUser, "Admin");
                     }
                 }

@@ -35,7 +35,6 @@ namespace Conference_Room_Rental.Controllers
         }
 
         [HttpGet]
-        [HttpGet]
         public async Task<IActionResult> Create(int? roomId)
         {
             var model = new CreateReservationViewModel
