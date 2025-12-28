@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Conference_Room_Rental.Models.Reservation>
+
+@{
+    ViewData["Title"] = "Moje Rezerwacje";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold"><i class="bi bi-calendar-check text-primary"></i> Moje Rezerwacje</h2>
+            <p class="text-muted">Historia i nadchodzące spotkania</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary btn-lg shadow-sm">
+            <i class="bi bi-plus-lg"></i> Nowa Rezerwacja
+        </a>
+    </div>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="card shadow border-0 rounded-3 overflow-hidden">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light text-secondary">
+                    <tr>
+                        <th class="ps-4">Sala</th>
+                        <th>Termin</th>
+                        <th>Koszt</th>
+                        <th>Status</th>
+                        <th class="text-end pe-4">Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-bold">@item.ConferenceRoom.RoomNumber</div>
+                                <small class="text-muted">@item.ConferenceRoom.Location</small>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column">
+                                    <span><i class="bi bi-calendar-event me-1 text-muted"></i> @item.StartTime.ToString("dd.MM.yyyy")</span>
+                                    <small class="text-muted">@item.StartTime.ToString("HH:mm") - @item.EndTime.ToString("HH:mm")</small>
+                                </div>
+                            </td>
+                            <td class="fw-bold text-success">@item.TotalCost.ToString("C")</td>
+                            <td>
+                                @if (item.Status == Conference_Room_Rental.Models.ReservationStatus.Cancelled)
+                                {
+                                    <span class="badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill">Anulowana</span>
+                                }
+                                else if (item.Status == Conference_Room_Rental.Models.ReservationStatus.Pending)
+                                {
+                                    <span class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill">Oczekująca</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill">Zatwierdzona</span>
+                                }
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary me-1" title="Szczegóły">
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+
+                                @if (item.Status != Conference_Room_Rental.Models.ReservationStatus.Cancelled)
+                                {
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Anuluj" onclick="return confirm('Czy na pewno anulować?');">
+                                            <i class="bi bi-x-circle"></i>
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="bi bi-calendar-x text-muted fs-1"></i>
+                    <p class="text-muted mt-3">Nie masz jeszcze żadnych rezerwacji.</p>
+                    <a asp-action="Create" class="btn btn-link">Rezerwuj pierwszą salę</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model Conference_Room_Rental.Models.ConferenceRoom
+@{
+    ViewData["Title"] = "Usuń Salę";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white p-3">
+                    <h4 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> Usuwanie Sali</h4>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <h3 class="fw-bold mb-3">@Model.RoomNumber</h3>
+                    <p class="text-muted">Czy na pewno chcesz bezpowrotnie usunąć tę salę z systemu?</p>
+
+                    <div class="alert alert-warning mt-3">
+                        Tej operacji nie można cofnąć.
+                    </div>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <a asp-action="Index" class="btn btn-secondary px-4">Anuluj</a>
+                            <button type="submit" class="btn btn-danger px-4">Potwierdź Usunięcie</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

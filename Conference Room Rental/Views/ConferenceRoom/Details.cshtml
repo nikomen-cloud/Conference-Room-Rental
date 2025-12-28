@@ -1,0 +1,102 @@
+﻿@model Conference_Room_Rental.Models.ConferenceRoom
+
+@{
+    ViewData["Title"] = "Szczegóły Sali - " + Model.RoomNumber;
+}
+
+<div class="container mt-5 mb-5">
+    <a asp-action="Index" class="btn btn-outline-secondary mb-4 border-0">
+        <i class="bi bi-arrow-left"></i> Wróć do katalogu
+    </a>
+
+    <div class="card shadow-sm border-0 overflow-hidden rounded-3">
+        <div class="row g-0">
+            <div class="col-md-6 bg-light d-flex align-items-center justify-content-center" style="min-height: 400px;">
+                <img src="@(Model.ImageUrl ?? "https://via.placeholder.com/800x600?text=Brak+Zdjecia")"
+                     class="img-fluid w-100 h-100"
+                     style="object-fit: cover;"
+                     alt="@Model.RoomNumber">
+            </div>
+
+            <div class="col-md-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+
+                <div class="mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-2">
+                        <i class="bi bi-geo-alt-fill"></i> @Model.Location
+                    </span>
+                    <h1 class="fw-bold mb-3">@Model.RoomNumber</h1>
+                </div>
+
+                <p class="text-muted mb-4 lead" style="font-size: 1.1rem;">
+                    @Model.Description
+                </p>
+
+                <h5 class="fw-bold mb-3">Wyposażenie i cechy:</h5>
+                <div class="row row-cols-2 g-3 mb-4">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-people-fill text-secondary fs-4 me-2"></i>
+                            <div>
+                                <small class="text-muted d-block">Pojemność</small>
+                                <strong>do @Model.Capacity osób</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.HasProjector)
+                    {
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-projector-fill text-primary fs-4 me-2"></i>
+                                <span>Rzutnik HD</span>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.HasWiFi)
+                    {
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-wifi text-success fs-4 me-2"></i>
+                                <span>Szybkie Wi-Fi</span>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.HasAirConditioning)
+                    {
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-snow text-info fs-4 me-2"></i>
+                                <span>Klimatyzacja</span>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.HasWhiteboard)
+                    {
+                        <div class="col">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-easel text-warning fs-4 me-2"></i>
+                                <span>Tablica suchościeralna</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div>
+                        <small class="text-muted text-uppercase fw-bold">Cena wynajmu</small>
+                        <div class="fs-2 fw-bold text-dark">@Model.PricePerHour.ToString("C") <span class="fs-6 text-muted fw-normal">/ godz.</span></div>
+                    </div>
+
+                    <a asp-controller="Reservation" asp-action="Create" asp-route-roomId="@Model.Id" class="btn btn-success btn-lg px-4 py-3 shadow-sm flex-grow-1 flex-md-grow-0">
+                        Zarezerwuj tę salę <i class="bi bi-chevron-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

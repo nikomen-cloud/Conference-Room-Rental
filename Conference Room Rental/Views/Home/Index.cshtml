@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Strona Główna";
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1920');
+        background-size: cover;
+        background-position: center;
+        height: 60vh; /* 60% wysokości ekranu */
+        color: white;
+        display: flex;
+        align-items: center;
+        justify_content: center;
+        border-radius: 0 0 15px 15px;
+        margin-top: -1.5rem; /* Niweluje domyślny margines kontenera */
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: #0d6efd; /* Bootstrap Primary Blue */
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="hero-section text-center mb-5 p-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Znajdź idealną przestrzeń</h1>
+        <p class="lead mb-4">Profesjonalne sale konferencyjne, biura na godziny i przestrzenie szkoleniowe w Twoim mieście.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a asp-controller="ConferenceRoom" asp-action="Index" class="btn btn-primary btn-lg px-4 gap-3">
+                <i class="bi bi-search"></i> Przeglądaj Sale
+            </a>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-light btn-lg px-4">
+                    Załóż konto
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col text-center">
+            <div class="feature-icon bg-light rounded-circle p-3 d-inline-block shadow-sm">
+                <i class="bi bi-laptop"></i>
+            </div>
+            <h3 class="fs-4 mt-3">Nowoczesny Sprzęt</h3>
+            <p>Każda sala wyposażona jest w szybkie Wi-Fi, rzutniki HD oraz klimatyzację, by zapewnić komfort pracy.</p>
+        </div>
+        <div class="col text-center">
+            <div class="feature-icon bg-light rounded-circle p-3 d-inline-block shadow-sm">
+                <i class="bi bi-clock-history"></i>
+            </div>
+            <h3 class="fs-4 mt-3">Elastyczne Godziny</h3>
+            <p>Rezerwuj na godzinę lub na cały dzień. Nasz system dostępny jest 24/7, dopasowując się do Twojego grafiku.</p>
+        </div>
+        <div class="col text-center">
+            <div class="feature-icon bg-light rounded-circle p-3 d-inline-block shadow-sm">
+                <i class="bi bi-wallet2"></i>
+            </div>
+            <h3 class="fs-4 mt-3">Przejrzyste Ceny</h3>
+            <p>Żadnych ukrytych kosztów. Płacisz tylko za czas, który faktycznie wykorzystujesz. Faktura od razu po rezerwacji.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="bg-light p-5 rounded-3 border shadow-sm text-center">
+        <h2>Gotowy do pracy?</h2>
+        <p class="mb-4 text-muted">Dołącz do setek zadowolonych klientów i zarezerwuj swoją pierwszą salę już dziś.</p>
+        <a asp-controller="Reservation" asp-action="Create" class="btn btn-success btn-lg">
+            Zarezerwuj teraz &rarr;
+        </a>
+    </div>
+</div>
