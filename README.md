@@ -6,7 +6,7 @@
 * **Rejestracja i Logowanie:** Bezpieczny system kont oparty na ASP.NET Core Identity. Automatyczne logowanie po rejestracji.
 * **Katalog Sal:** Przeglądanie dostępnych sal w formie responsywnej siatki ze zdjęciami i listą udogodnień.
 * **Inteligentna Rezerwacja:**
-    * Dwie ścieżki rezerwacji: z poziomu katalogu oraz "Szybka rezerwacja" z menu.
+    * **Dwie ścieżki rezerwacji**: z poziomu katalogu oraz "Szybka rezerwacja" z menu.
     * **Wykrywanie konfliktów:** System automatycznie blokuje próbę rezerwacji zajętego terminu.
     * **Walidacja:** Blokada dat wstecznych oraz sprawdzanie poprawności przedziału czasowego (Start < Koniec).
 * **Moje Rezerwacje:** Panel klienta z historią rezerwacji, statusami (Zatwierdzona/Anulowana) oraz możliwością anulowania wizyty.
