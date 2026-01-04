@@ -63,3 +63,11 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.navbar-nav form .btn.nav-link {
+    color: var(--text-color) !important;
+}
+
+.navbar-nav form .btn.nav-link:hover {
+    color: #CBFE9E !important; /* zielony po najechaniu - ma wp³yw na przycisk logout */
+}

@@ -19,12 +19,3 @@ function updateButtonIcon(theme) {
         btn.innerText = theme === 'dark' ? '☀️' : '🌙';
     }
 }
-
-// Sprawdzenie ustawień przy załadowaniu
-(function() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.addEventListener("DOMContentLoaded", function() {
-        updateButtonIcon(savedTheme);
-    });
-})();
