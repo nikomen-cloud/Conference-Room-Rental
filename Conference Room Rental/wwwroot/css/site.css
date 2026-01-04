@@ -19,11 +19,11 @@
 }
 
 [data-theme="dark"] a {
-    color: #72BD31; /* zielony */
+    color: #72BD31; /* zielony kolor */
 }
 
 [data-theme="dark"] a:hover {
-    color: #CBFE9E; /* Jasnozielony po najechaniu*/
+    color: #CBFE9E; /* Jasnozielony kolor po najechaniu*/
 }
 
 body {
