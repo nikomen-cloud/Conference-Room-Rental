@@ -14,6 +14,18 @@
     --border-color: #444;
 }
 
+[data-theme="dark"] .text-muted {
+    color: #aeb0b5 !important; 
+}
+
+[data-theme="dark"] a {
+    color: #72BD31; /* Jasnoniebieski */
+}
+
+[data-theme="dark"] a:hover {
+    color: #CBFE9E; /* Jasnoniebieski po najechaniu*/
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
